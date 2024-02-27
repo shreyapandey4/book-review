@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Add a New Review</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Add a New Review</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <label for="book_name">Book Name:</label>
+            {{ form.book_name() }}
+            
+            <label for="author_name">Author Name:</label>
+            {{ form.author_name() }}
+            
+            <label for="rating">Rating:</label>
+            {{ form.rating() }}
+            
+            <label for="review_text">Review:</label>
+            {{ form.review_text() }}
+            
+            <button type="submit">Submit Review</button>
+        </form>
+        <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+    </div>
+</body>
+</html>

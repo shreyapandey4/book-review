@@ -1,0 +1,63 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add custom CSS for scrollable review text */
+        .scrollable-text {
+            max-height: 100px; /* Adjust the max height as needed */
+            overflow-y: auto;
+        }
+    </style>
+    <title>Your Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome to Your Dashboard, {{ current_user.username }}!</h2>
+
+        {% if user_reviews %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Book Name</th>
+                        <th scope="col">Author Name</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Review Text</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for review in user_reviews %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ review.book_name }}</td>
+                            <td>{{ review.author_name }}</td>
+                            <td>{{ review.rating }}/10</td>
+                            <td class="scrollable-text">
+                                {{ review.review_text }}
+                            </td>
+                            <td>{{ review.review_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No book reviews yet. Start adding some!</p>
+        {% endif %}
+
+        <p><a href="{{ url_for('post_review') }}">Add a New Review</a></p>
+        <p><a href="{{ url_for('logout') }}">Logout</a></p>
+    </div>
+
+    <!-- Include Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

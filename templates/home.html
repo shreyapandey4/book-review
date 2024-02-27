@@ -1,0 +1,22 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Your Book Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Book journal</h1>
+        <p>A space to keep track of the books you read.</p>
+        
+        <div class="options">
+            <a href="{{ url_for('register') }}">Register</a>
+            <span>or</span>
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+    </div>
+</body>
+</html>
